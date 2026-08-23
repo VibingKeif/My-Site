@@ -1,0 +1,185 @@
+/* ============================================
+   Base / Reset
+   ============================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0b0b12;
+  --card-bg: rgba(255, 255, 255, 0.04);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --text: #f2f2f7;
+  --text-dim: #9a9aad;
+  --accent-1: #7c5cff;
+  --accent-2: #00e0c6;
+  --accent-3: #ff5c8a;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   Animated background blobs
+   ============================================ */
+.blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.35;
+  z-index: 0;
+  animation: float 14s ease-in-out infinite;
+}
+
+.blob-1 {
+  width: 420px;
+  height: 420px;
+  background: var(--accent-1);
+  top: -10%;
+  left: -10%;
+}
+
+.blob-2 {
+  width: 380px;
+  height: 380px;
+  background: var(--accent-2);
+  bottom: -15%;
+  right: -8%;
+  animation-delay: -5s;
+}
+
+.blob-3 {
+  width: 260px;
+  height: 260px;
+  background: var(--accent-3);
+  top: 40%;
+  left: 55%;
+  animation-delay: -9s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(40px, -50px) scale(1.1); }
+  66%      { transform: translate(-30px, 30px) scale(0.95); }
+}
+
+/* ============================================
+   Main card
+   ============================================ */
+.card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 480px;
+  padding: 2.5rem 2rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================
+   Profile
+   ============================================ */
+.avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--accent-1);
+  box-shadow: 0 0 25px rgba(124, 92, 255, 0.5);
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 1.6rem;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.4rem;
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tagline {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+
+/* ============================================
+   Link buttons
+   ============================================ */
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.link-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 1rem 1.25rem;
+  border-radius: 14px;
+  border: 1px solid var(--card-border);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  text-decoration: none;
+  text-align: left;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.link-btn:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent-1);
+  box-shadow: 0 8px 30px rgba(124, 92, 255, 0.25);
+}
+
+.link-title {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.link-sub {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+/* ============================================
+   Disclosure
+   ============================================ */
+.disclosure {
+  margin-top: 2rem;
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+
+/* ============================================
+   Small screens
+   ============================================ */
+@media (max-width: 420px) {
+  .card {
+    padding: 2rem 1.25rem;
+  }
+
+  h1 {
+    font-size: 1.35rem;
+  }
+}
