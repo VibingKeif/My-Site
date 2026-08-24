@@ -1,64 +1,245 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Keifs Affiliates</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<!-- =====================================================
+     Keifs Affiliates — WordPress Custom HTML Block
+     Copy EVERYTHING in this file and paste it into a
+     "Custom HTML" block on your WordPress page.
+     ===================================================== -->
+
+<style>
+  /* ===== Scoped styles: only affect this block ===== */
+
+  .keifs-wrap * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .keifs-wrap {
+    --card-bg: rgba(255, 255, 255, 0.04);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --text: #f2f2f7;
+    --text-dim: #9a9aad;
+    --accent-1: #7c5cff;
+    --accent-2: #00e0c6;
+    --accent-3: #ff5c8a;
+
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    background: #0b0b12;
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+  }
+
+  /* Animated background blobs */
+  .keifs-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.35;
+    z-index: 0;
+    animation: keifs-float 14s ease-in-out infinite;
+  }
+
+  .keifs-blob-1 {
+    width: 420px; height: 420px;
+    background: var(--accent-1);
+    top: -10%; left: -10%;
+  }
+
+  .keifs-blob-2 {
+    width: 380px; height: 380px;
+    background: var(--accent-2);
+    bottom: -15%; right: -8%;
+    animation-delay: -5s;
+  }
+
+  .keifs-blob-3 {
+    width: 260px; height: 260px;
+    background: var(--accent-3);
+    top: 40%; left: 55%;
+    animation-delay: -9s;
+  }
+
+  @keyframes keifs-float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%      { transform: translate(40px, -50px) scale(1.1); }
+    66%      { transform: translate(-30px, 30px) scale(0.95); }
+  }
+
+  /* Main card */
+  .keifs-card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 480px;
+    padding: 2.5rem 2rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .keifs-logo {
+    width: 200px;
+    height: auto;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 18px rgba(124, 92, 255, 0.45));
+  }
+
+  .keifs-card h1 {
+    font-size: 1.6rem;
+    letter-spacing: 0.5px;
+    margin: 0 0 0.4rem;
+    background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .keifs-tagline {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+  }
+
+  /* Link buttons */
+  .keifs-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .keifs-link-btn {
+    display: flex !important;
+    flex-direction: column;
+    gap: 2px;
+    padding: 1rem 1.25rem;
+    border-radius: 14px;
+    border: 1px solid var(--card-border);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text) !important;
+    text-decoration: none !important;
+    text-align: left;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .keifs-link-btn:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent-1);
+    box-shadow: 0 8px 30px rgba(124, 92, 255, 0.25);
+  }
+
+  .keifs-link-title {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .keifs-link-sub {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+  }
+
+  /* Disclosure */
+  .keifs-disclosure {
+    margin-top: 2rem;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    line-height: 1.4;
+  }
+
+  @media (max-width: 420px) {
+    .keifs-card { padding: 2rem 1.25rem; }
+    .keifs-card h1 { font-size: 1.35rem; }
+  }
+</style>
+
+<div class="keifs-wrap">
 
   <!-- Animated background blobs -->
-  <div class="blob blob-1"></div>
-  <div class="blob blob-2"></div>
-  <div class="blob blob-3"></div>
+  <div class="keifs-blob keifs-blob-1"></div>
+  <div class="keifs-blob keifs-blob-2"></div>
+  <div class="keifs-blob keifs-blob-3"></div>
 
-  <main class="card">
-    <img class="avatar" src="https://placehold.co/120x120" alt="Profile picture">
+  <div class="keifs-card">
+    <svg class="keifs-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 60" role="img" aria-label="Keifs Affiliate logo">
+      <defs>
+        <linearGradient id="keifs-mark" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#6C5CE7"/>
+          <stop offset="0.55" stop-color="#00B8D4"/>
+          <stop offset="1" stop-color="#00E5A0"/>
+        </linearGradient>
+        <linearGradient id="keifs-word" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#F2F2F7"/>
+          <stop offset="1" stop-color="#B8B8CC"/>
+        </linearGradient>
+      </defs>
+      <g transform="translate(30,30)">
+        <path d="M 0 -19 L 16.5 -9.5 L 16.5 9.5 L 0 19 L -16.5 9.5 L -16.5 -9.5 Z"
+              fill="none" stroke="url(#keifs-mark)" stroke-width="3.5" stroke-linejoin="round"
+              stroke-dasharray="78 36" stroke-linecap="round" transform="rotate(15)"/>
+        <path d="M -11 8 L 3 -12 L 1 -1 L 11 -8 L -3 12 L -1 1 Z" fill="url(#keifs-mark)"/>
+        <circle cx="-14" cy="-13" r="2.4" fill="#6C5CE7"/>
+        <circle cx="17" cy="12" r="3" fill="#00E5A0"/>
+      </g>
+      <text x="58" y="37" font-family="Segoe UI, Helvetica, Arial, sans-serif"
+            font-size="24" font-weight="700" letter-spacing="1"
+            fill="url(#keifs-word)">KEIFS</text>
+      <text x="59" y="50" font-family="Segoe UI, Helvetica, Arial, sans-serif"
+            font-size="8.5" font-weight="600" letter-spacing="3.2"
+            fill="#00B8D4">AFFILIATE</text>
+    </svg>
     <h1>Keifs Affiliates</h1>
-    <p class="tagline">My favorite tools &amp; products — links below support me at no extra cost to you.</p>
+    <p class="keifs-tagline">My favorite tools &amp; products — links below support me at no extra cost to you.</p>
 
-    <div class="links">
-      <a class="link-btn" href="https://elocarry.net/ref/adf5c577dd/apex-legends?c=Main%20Link" target="_blank" rel="noopener sponsored">
-        <span class="link-title">Apex Legends</span>
-        <span class="link-sub">Elocarry</span>
+    <div class="keifs-links">
+      <a class="keifs-link-btn" href="https://elocarry.net/ref/adf5c577dd/apex-legends?c=Main%20Link" target="_blank" rel="noopener sponsored">
+        <span class="keifs-link-title">Apex Legends</span>
+        <span class="keifs-link-sub">Elocarry</span>
       </a>
-      <a class="link-btn" href="https://elocarry.net/ref/adf5c577dd/arc-raiders?c=Main%20Link" target="_blank" rel="noopener sponsored">
-        <span class="link-title">Arc Raiders</span>
-        <span class="link-sub">Elocarry</span>
+      <a class="keifs-link-btn" href="https://elocarry.net/ref/adf5c577dd/arc-raiders?c=Main%20Link" target="_blank" rel="noopener sponsored">
+        <span class="keifs-link-title">Arc Raiders</span>
+        <span class="keifs-link-sub">Elocarry</span>
       </a>
-      <a class="link-btn" href="https://elocarry.net/ref/adf5c577dd/battlefield-6?c=Main%20Link" target="_blank" rel="noopener sponsored">
-        <span class="link-title">Battlefield 6</span>
-        <span class="link-sub">Elocarry</span>
+      <a class="keifs-link-btn" href="https://elocarry.net/ref/adf5c577dd/battlefield-6?c=Main%20Link" target="_blank" rel="noopener sponsored">
+        <span class="keifs-link-title">Battlefield 6</span>
+        <span class="keifs-link-sub">Elocarry</span>
       </a>
-      <a class="link-btn" href="https://elocarry.net/ref/adf5c577dd/dayz?c=Main%20Link" target="_blank" rel="noopener sponsored">
-        <span class="link-title">DayZ</span>
-        <span class="link-sub">Elocarry</span>
+      <a class="keifs-link-btn" href="https://elocarry.net/ref/adf5c577dd/dayz?c=Main%20Link" target="_blank" rel="noopener sponsored">
+        <span class="keifs-link-title">DayZ</span>
+        <span class="keifs-link-sub">Elocarry</span>
       </a>
-      <a class="link-btn" href="https://elocarry.net/ref/adf5c577dd/dead-by-daylight?c=Main%20Link" target="_blank" rel="noopener sponsored">
-        <span class="link-title">Dead by Daylight</span>
-        <span class="link-sub">Elocarry</span>
+      <a class="keifs-link-btn" href="https://elocarry.net/ref/adf5c577dd/dead-by-daylight?c=Main%20Link" target="_blank" rel="noopener sponsored">
+        <span class="keifs-link-title">Dead by Daylight</span>
+        <span class="keifs-link-sub">Elocarry</span>
       </a>
-      <a class="link-btn" href="https://elocarry.net/ref/adf5c577dd/deadlock?c=Main%20Link" target="_blank" rel="noopener sponsored">
-        <span class="link-title">Deadlock</span>
-        <span class="link-sub">Elocarry</span>
+      <a class="keifs-link-btn" href="https://elocarry.net/ref/adf5c577dd/deadlock?c=Main%20Link" target="_blank" rel="noopener sponsored">
+        <span class="keifs-link-title">Deadlock</span>
+        <span class="keifs-link-sub">Elocarry</span>
       </a>
-      <a class="link-btn" href="https://elocarry.net/ref/adf5c577dd/escape-from-tarkov?c=Main%20Link" target="_blank" rel="noopener sponsored">
-        <span class="link-title">Escape from Tarkov</span>
-        <span class="link-sub">Elocarry</span>
+      <a class="keifs-link-btn" href="https://elocarry.net/ref/adf5c577dd/escape-from-tarkov?c=Main%20Link" target="_blank" rel="noopener sponsored">
+        <span class="keifs-link-title">Escape from Tarkov</span>
+        <span class="keifs-link-sub">Elocarry</span>
       </a>
-      <a class="link-btn" href="https://elocarry.net/ref/adf5c577dd/marvel-rivals?c=Main%20Link" target="_blank" rel="noopener sponsored">
-        <span class="link-title">Marvel Rivals</span>
-        <span class="link-sub">Elocarry</span>
+      <a class="keifs-link-btn" href="https://elocarry.net/ref/adf5c577dd/marvel-rivals?c=Main%20Link" target="_blank" rel="noopener sponsored">
+        <span class="keifs-link-title">Marvel Rivals</span>
+        <span class="keifs-link-sub">Elocarry</span>
       </a>
-      <a class="link-btn" href="https://elocarry.net/ref/adf5c577dd/overwatch?c=Main%20Link" target="_blank" rel="noopener sponsored">
-        <span class="link-title">Overwatch</span>
-        <span class="link-sub">Elocarry</span>
+      <a class="keifs-link-btn" href="https://elocarry.net/ref/adf5c577dd/overwatch?c=Main%20Link" target="_blank" rel="noopener sponsored">
+        <span class="keifs-link-title">Overwatch</span>
+        <span class="keifs-link-sub">Elocarry</span>
       </a>
     </div>
 
-    <p class="disclosure">Some links may be affiliate links. I may earn a commission at no extra cost to you.</p>
-  </main>
+    <p class="keifs-disclosure">Some links may be affiliate links. I may earn a commission at no extra cost to you.</p>
+  </div>
 
-</body>
-</html>
+</div>
